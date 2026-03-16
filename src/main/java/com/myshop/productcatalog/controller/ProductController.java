@@ -2,6 +2,9 @@ package com.myshop.productcatalog.controller;
 
 import com.myshop.productcatalog.model.Product;
 import com.myshop.productcatalog.service.ProductService;
+
+import jakarta.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -23,13 +26,13 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product addProduct(@RequestBody Product product) {
+    public Product addProduct(@Valid @RequestBody Product product) {
         return productService.saveProduct(product);
     }
 
     @PutMapping("/{id}")
     public Product updateProduct(@PathVariable Long id,
-            @RequestBody Product product) {
+            @Valid @RequestBody Product product) {
         return productService.updateProduct(id, product);
     }
 
